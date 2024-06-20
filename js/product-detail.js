@@ -14,21 +14,15 @@ divChangeTitle.textContent = localStorage.getItem("title");
 
 var divChangeDesc = document
   .getElementById("product")
-  .getElementsByTagName("p")[0];
+  .getElementsByTagName("h4")[0];
 
-divChangeDesc.textContent = localStorage.getItem("desc");
+divChangeDesc.textContent = localStorage.getItem("desc").split("/")[0];
 
 var divChangeSpan = document
   .getElementById("product")
   .getElementsByTagName("span")[1];
 
 divChangeSpan.textContent = localStorage.getItem("span");
-
-// // Remove local storage
-// localStorage.removeItem("image");
-// localStorage.removeItem("title");
-// localStorage.removeItem("desc");
-// localStorage.removeItem("span");
 
 document.addEventListener("DOMContentLoaded", function () {
   var proQty = document.querySelectorAll(".pro-qty");
@@ -61,3 +55,25 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+function addToCart() {
+  var product = {
+    title: localStorage.getItem("title"),
+    desc: localStorage.getItem("desc"),
+    span: localStorage.getItem("span"),
+    qty: document.querySelector(".pro-qty input").value,
+  };
+
+  alert(
+    "Add to cart successfully!\n" +
+      localStorage.getItem("title") +
+      " " +
+      product.qty +
+      " items \n" +
+      "We will contact you soon!"
+  );
+  localStorage.removeItem("image");
+  localStorage.removeItem("title");
+  localStorage.removeItem("desc");
+  localStorage.removeItem("span");
+  window.location.href = "index.html";
+}
